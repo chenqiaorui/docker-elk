@@ -1,13 +1,23 @@
-FROM java:8 
+FROM ubuntu:bionic
+MAINTAINER Ricky Chen <809155736@qq.com>
 
-# Install maven
-RUN apt-get update  
-RUN apt-get install -y maven
+#get package list
+RUN apt-get update
 
-# Adding springboot-elk app to container
-ADD . /usr/config-client  
-WORKDIR /usr/config-client
-RUN ["mvn", "package"]
+#default time zone
+#ENV TZ=UTC
+	
+#java home
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+# install java
+RUN apt-get install -y openjdk-8-jdk
+
+# show the java info
+RUN java -version
+
+WORKDIR /docker-elk/app
+ADD ./target/springboot-elk-0.0.1-SNAPSHOT.jar . 
 
 EXPOSE 8080 
-CMD ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "target/springboot-elk-0.0.1-SNAPSHOT.jar"]
+CMD ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "springboot-elk-0.0.1-SNAPSHOT.jar"]

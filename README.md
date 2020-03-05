@@ -8,6 +8,10 @@ Building the ELK
 
 This demo assumes you know how to run Docker.
 
+Package
+----------------------
+    $ mvn package
+
 Building the Containers
 ----------------------
 Nothing special if you already have Docker installed:
