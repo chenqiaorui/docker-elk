@@ -1,0 +1,3 @@
+#spring.application.name = spring-boot-elk
+server:
+  port: 8080
